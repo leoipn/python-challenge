@@ -11,14 +11,11 @@ greatest_decrease = {"month":"","amount":0}
 
 ## Main Code
 csvpath = os.path.join('Resources', 'budget_data.csv')
-print(csvpath)
 
 with open(csvpath) as csvfile:
 
     # CSV reader specifies delimiter and variable that holds contents
     csvreader = csv.reader(csvfile, delimiter=',')
-
-    print(csvreader)
 
     # Read the header row first (skip this step if there is no header)
     csv_header = next(csvreader)
