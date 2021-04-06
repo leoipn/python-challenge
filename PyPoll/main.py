@@ -31,12 +31,14 @@ def get_poll_results(candidates):
 
         results_of_poll.append(candidate_info)    
     dict_poll_results["results"] = results_of_poll
-    #print (dict_poll_results)
+
     return dict_poll_results
 
-## Main Code
-#csvpath = os.path.join('Resources', 'election_data.csv')
-csvpath = os.path.join('Resources', 'test.csv')
+############################################## 
+# Main Code
+##############################################
+csvpath = os.path.join('Resources', 'election_data.csv')
+#csvpath = os.path.join('Resources', 'test.csv')
 
 with open(csvpath) as csvfile:
 
@@ -61,6 +63,7 @@ with open(csvpath) as csvfile:
         else:
             dict_candidates[candidate] +=1
 
+# Call a function to get the poll results
 dict_results_of_poll = get_poll_results(dict_candidates)
 
 print("Election Results")
@@ -68,21 +71,28 @@ print("-------------------------")
 print(f"Total Votes: {total_votes}")
 print("-------------------------")
 for result in dict_results_of_poll["results"]:
-    print(f"{result['name']}: {result['percentage']:.2f}% ({result['votes']})")
+    print(f"{result['name']}: {result['percentage']:.3f}% ({result['votes']})")
 print("-------------------------")
-print(f"---> Winner: {dict_results_of_poll['Winner']}")
+print(f"Winner: {dict_results_of_poll['Winner']}")
+print("-------------------------")
 
+##############################################
+# Write to file
+##############################################
 #Specify the file to write to
 output_path = os.path.join("analysis", "poll_results.txt")
 
 # Open the file using "write" mode. Specify the variable to hold the contents
 file = open(output_path, 'w')
 
-file.write("Election Results")
-file.write("-------------------------")
-file.write(f"Total Votes: {total_votes}")
-file.write("-------------------------")
-file.write(f"{list_of_unique_candidates}")
+file.write("Election Results\n")
+file.write("-------------------------\n")
+file.write(f"Total Votes: {total_votes}\n")
+file.write("-------------------------\n")
+for result in dict_results_of_poll["results"]:
+    file.write(f"{result['name']}: {result['percentage']:.3f}% ({result['votes']})\n")
+file.write("-------------------------\n")
+file.write(f"Winner: {dict_results_of_poll['Winner']}\n")
 file.write("-------------------------")
 
 file.close()
