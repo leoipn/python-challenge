@@ -12,10 +12,9 @@ dict_results_of_poll = dict()
 def get_poll_results(candidates):
     results_of_poll = []
     previous_candidate_votes = 0
-    candidate_keys = candidates.keys()
     dict_poll_results = dict()
 
-    for candidate_key in candidate_keys:
+    for candidate_key in candidates.keys():
         candidate_info = dict()        
         total_votes_per_candidate = candidates[candidate_key]
         quotient = candidates[candidate_key]/total_votes
@@ -30,6 +29,7 @@ def get_poll_results(candidates):
         candidate_info["votes"] = total_votes_per_candidate
 
         results_of_poll.append(candidate_info)    
+    
     dict_poll_results["results"] = results_of_poll
 
     return dict_poll_results
@@ -38,7 +38,6 @@ def get_poll_results(candidates):
 # Main Code
 ##############################################
 csvpath = os.path.join('Resources', 'election_data.csv')
-#csvpath = os.path.join('Resources', 'test.csv')
 
 with open(csvpath) as csvfile:
 
