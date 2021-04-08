@@ -19,7 +19,6 @@ with open(csvpath) as csvfile:
 
     # Read the header row first (skip this step if there is no header)
     csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
 
     #Read each row of the csv file
     for row in csvreader:
